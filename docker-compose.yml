@@ -1,0 +1,60 @@
+services:
+  wordpress:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - 'xg4c44cgg8ok0cc4c0k8c448_wordpress-files:/var/www/html'
+    environment:
+      PHP_IMAGE: php8.1
+      PHP_DB_HOST: mariadb
+      PHP_DB_USER: $SERVICE_USER_PHP
+      PHP_DB_PASSWORD: $SERVICE_PASSWORD_PHP
+      PHP_DB_NAME: wordpress
+    depends_on:
+      - mariadb
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - '-f'
+        - 'http://127.0.0.1'
+      interval: 2s
+      timeout: 10s
+      retries: 10
+    container_name: wordpress-xg4c44cgg8ok0cc4c0k8c448
+    restart: unless-stopped
+    networks:
+      xg4c44cgg8ok0cc4c0k8c448: null
+  mariadb:
+    image: 'mariadb:11'
+    volumes:
+      - 'xg4c44cgg8ok0cc4c0k8c448_mariadb-data:/var/lib/mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: $SERVICE_PASSWORD_ROOT
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: $SERVICE_USER_PHP
+      MYSQL_PASSWORD: $SERVICE_PASSWORD_PHP
+    healthcheck:
+      test:
+        - CMD
+        - healthcheck.sh
+        - '--connect'
+        - '--innodb_initialized'
+      interval: 5s
+      timeout: 20s
+      retries: 10
+    container_name: mariadb-xg4c44cgg8ok0cc4c0k8c448
+    restart: unless-stopped
+    networks:
+      xg4c44cgg8ok0cc4c0k8c448: null
+volumes:
+  xg4c44cgg8ok0cc4c0k8c448_wordpress-files:
+    name: xg4c44cgg8ok0cc4c0k8c448_wordpress-files
+  xg4c44cgg8ok0cc4c0k8c448_mariadb-data:
+    name: xg4c44cgg8ok0cc4c0k8c448_mariadb-data
+networks:
+  xg4c44cgg8ok0cc4c0k8c448:
+    name: xg4c44cgg8ok0cc4c0k8c448
+configs: {  }
+secrets: {  }
