@@ -6,7 +6,7 @@ services:
     volumes:
       - 'xg4c44cgg8ok0cc4c0k8c448_wordpress-files:/var/www/html'
     environment:
-      PHP_IMAGE: php8.1
+      PHP_IMAGE: 8.1
       PHP_DB_HOST: mariadb
       PHP_DB_USER: $SERVICE_USER_PHP
       PHP_DB_PASSWORD: $SERVICE_PASSWORD_PHP
