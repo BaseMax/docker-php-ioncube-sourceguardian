@@ -1,8 +1,8 @@
 # Max Base
 # https://github.com/BaseMax/docker-php-ioncube-sourceguardian
 
-ARG PHP_IMAGE=php8.1
-FROM wordpress:${PHP_IMAGE}
+ARG PHP_IMAGE=8.1
+FROM php:${PHP_IMAGE}-cli
 
 RUN apt-get update -y && \
     apt-get install -y \
