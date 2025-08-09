@@ -25,9 +25,6 @@ max_input_vars = 5000
 max_file_uploads = 50
 EOF
 
-RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-    chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
-
 RUN wget https://raw.githubusercontent.com/BaseMax/php-installer-ioncube-sourceguardian/main/install_loaders.php && \
     php install_loaders.php && rm install_loaders.php
 

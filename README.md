@@ -77,7 +77,6 @@ Your WordPress container is enhanced with:
 
 * Development & debug tools (`nano`, `htop`, `screenfetch`, `git`, etc.)
 * PHP extensions via `docker-php-ext-install` and PECL
-* Auto-download and setup of `wp-cli`
 * Auto-installation of `ionCube` and `SourceGuardian` from:
   [BaseMax/php-installer-ioncube-sourceguardian](https://github.com/BaseMax/php-installer-ioncube-sourceguardian)
 
